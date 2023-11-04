@@ -1,5 +1,13 @@
 package application;
 	
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import Code.MediaAnalyser;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -8,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {

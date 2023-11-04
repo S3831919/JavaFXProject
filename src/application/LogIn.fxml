@@ -39,18 +39,19 @@
       </VBox>
    </top>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane BorderPane.alignment="CENTER">
          <children>
-            <TextField alignment="CENTER" layoutX="217.0" layoutY="132.0" prefHeight="37.0" prefWidth="181.0" text="Username" />
-            <TextField alignment="CENTER" layoutX="217.0" layoutY="188.0" prefHeight="37.0" prefWidth="181.0" text="Password" />
-            <Button layoutX="217.0" layoutY="249.0" mnemonicParsing="false" onAction="#switchToNormalWelcome" prefHeight="25.0" prefWidth="99.0" text="Submit" />
+            <TextField fx:id="userName" alignment="CENTER" layoutX="217.0" layoutY="132.0" prefHeight="37.0" prefWidth="181.0" text="Username" />
+            <TextField fx:id="password" alignment="CENTER" layoutX="217.0" layoutY="188.0" prefHeight="37.0" prefWidth="181.0" text="Password" />
+            <Button layoutX="217.0" layoutY="255.0" mnemonicParsing="false" onAction="#switchToNormalWelcome" prefHeight="25.0" prefWidth="99.0" text="Submit" />
             <Hyperlink layoutX="223.0" layoutY="298.0" onAction="#switchToChangePassword" prefHeight="23.0" prefWidth="181.0" text="Forgot Password?" underline="true" />
             <Text layoutX="217.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In" wrappingWidth="75.724609375">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <Button layoutX="325.0" layoutY="249.0" mnemonicParsing="false" onAction="#switchToVIPWelcome" prefHeight="25.0" prefWidth="73.0" text="VIP" />
+            <Button layoutX="325.0" layoutY="255.0" mnemonicParsing="false" onAction="#switchToVIPWelcome" prefHeight="25.0" prefWidth="73.0" text="VIP" />
+            <Text fx:id="logInStatus" layoutX="101.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="417.724609375" />
          </children>
       </Pane>
    </center>

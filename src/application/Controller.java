@@ -1,32 +1,137 @@
 package application;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import javafx.event.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.EventObject;
+import java.util.List;
+import java.util.Scanner;
 
+import Code.MediaAnalyser;
+import javafx.event.*;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 public class Controller {
 	
 	private Stage stage;
 	private Scene scene;
 	private Parent root; 
+	
+	
+	@FXML
+	private TextArea textArea;
+	@FXML
+	private Button test;
+	
+	@FXML
+	private TextField userName;
+	
+	@FXML
+	private TextField password;
+	
+	@FXML
+	private Text logInStatus;
+	
+	//CSV Column values 
+	int ID = 0;
+	int content = 1;
+	int author = 2; 
+	int likes = 3; 
+	int shares = 4; 
+	int time = 5; 
+	int type = 6; 	
+	
+	String userEntry = ""; 
+	
+	Boolean validation = false; 
+	int userSelection = 0; 
+	List<String[]> list = new ArrayList<>();
+	
+	Boolean exceptionCheck = false;
+	
+	LocalDateTime timeStamp = LocalDateTime.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+	String formattedTimestamp = timeStamp.format(formatter);
+	
+	//Scanner to take user input
+	Scanner input = new Scanner(System.in);
+	
+	//creates the array list that contains the Posts
+	ArrayList<Post> postList = new ArrayList<Post>();
+	
+	//creates the array list that contains the Reply
+	ArrayList<Reply> replyList = new ArrayList<Reply>();
+	
+	//creates the array list that contains the Reply
+	ArrayList<User> userList = new ArrayList<User>();
+	
+	//create object for menu methods		
+	MediaAnalyser media = new MediaAnalyser(); 
+	
+	//create a new post 
+	Post post = new Post(0, "", "", 0, 0, "",0);
+	
+	//create a new reply 
+	Reply reply = new Reply(0, "", "", 0, 0, "",0);
+	
+	//create a user
+	User user = new User("","","","");
+	  
+	public void print(ArrayList postList) {
+		
+		textArea.setText(postList.toString());
+	
+	}
 
-
-	 public void switchToLogIn(ActionEvent event) throws IOException {
+	 
+	 public void createUser(){
+		 
+		 
+			 user.setUserName(userName.getText());
+			 user.setPassword(password.getText());
+			 userList.add(user);
+			 
+			 userName.setText(user.getUserName());
+			 password.setText(user.getPassword());
+			 			
+		 }
+	 
+	 public void switchToLogIn(ActionEvent event) throws IOException {  
+				 
+		 //adds user to the system
+		 try {
+		 createUser();
+		 }
+		 catch (NullPointerException e){
+			 
+			 System.out.print(e);
+			 
+		 }
 		 
 		 Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
-		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		  scene = new Scene(root);
-		  stage.setScene(scene);
-		  stage.show();
+		 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		 scene = new Scene(root);
+		 stage.setScene(scene);
+		 stage.show();
+		  
 		 }
 
 	 public void switchToSignUp(ActionEvent event) throws IOException {
+	
 		  Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		  scene = new Scene(root);
@@ -35,12 +140,30 @@ public class Controller {
 		 }
 	 
 	 public void switchToNormalWelcome(ActionEvent event) throws IOException {
-		  Parent root = FXMLLoader.load(getClass().getResource("NormalWelcome.fxml"));
-		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		  scene = new Scene(root);
-		  stage.setScene(scene);
-		  stage.show();
-		 }
+		    boolean flag = false;
+		    
+//		    for(int i = 0; i < userList.size(); i++) {
+//		    	if(userList.get(i).getUserName().equals(userName.getText())) {
+//		    		
+//		    	}
+//		    }
+	
+
+		    if (userName.getText().equals("Username") && password.getText().equals("Password")) {
+		        logInStatus.setText("Welcome");
+		        flag = true;
+		    } else {
+		        logInStatus.setText("Incorrect Username/Password. Please try again");
+		    }
+
+		    if (flag) {
+		        Parent root = FXMLLoader.load(getClass().getResource("NormalWelcome.fxml"));
+		        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		        scene = new Scene(root);
+		        stage.setScene(scene);
+		        stage.show();
+		    }
+		}
 	 
 	 public void switchToNormalAddAPost(ActionEvent event) throws IOException {
 		  Parent root = FXMLLoader.load(getClass().getResource("NormalAddAPost.fxml"));
@@ -131,11 +254,13 @@ public class Controller {
 		 }
 	 
 	 public void switchToNormalDisplayAllPosts(ActionEvent event) throws IOException {
+		 	
 		  Parent root = FXMLLoader.load(getClass().getResource("NormalDisplayAllPosts.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		  scene = new Scene(root);
-		  stage.setScene(scene);
+		  stage.setScene(scene); 
 		  stage.show();
+		  
 		 }
 	 
 	 public void switchToNormalEditMyProfile(ActionEvent event) throws IOException {
@@ -345,7 +470,10 @@ public class Controller {
 		  stage.setScene(scene);
 		  stage.show();
 		 }
+
+
 	 
+
 
 }
 

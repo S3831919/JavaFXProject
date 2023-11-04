@@ -47,7 +47,8 @@
                </font>
             </Text>
             <Button layoutX="212.0" layoutY="208.0" mnemonicParsing="false" onAction="#switchToNormalDisplayMyPosts" prefHeight="25.0" prefWidth="178.0" text="Back" />
-            <TextArea layoutX="212.0" layoutY="107.0" prefHeight="88.0" prefWidth="172.0" text="Post 1&#10;Post 2&#10;Post 3" />
+            <TextArea fx:id="textArea" layoutX="212.0" layoutY="107.0" prefHeight="88.0" prefWidth="172.0" />
+            <Button fx:id="test" layoutX="211.0" layoutY="288.0" mnemonicParsing="false" onAction="#printPosts" prefHeight="25.0" prefWidth="178.0" text="Test" />
          </children>
       </Pane>
    </center>
