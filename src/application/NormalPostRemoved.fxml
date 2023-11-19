@@ -44,7 +44,7 @@
                   <Font size="15.0" />
                </font>
             </Text>
-            <Button layoutX="204.0" layoutY="251.0" mnemonicParsing="false" onAction="#switchToNormalWelcome" prefHeight="25.0" prefWidth="178.0" text="Return to Main Menu" />
+            <Button layoutX="204.0" layoutY="251.0" mnemonicParsing="false" onAction="#switchToNormalWelcomeHome" prefHeight="25.0" prefWidth="178.0" text="Return to Main Menu" />
          </children>
       </Pane>
    </center>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="213.0" layoutY="249.0" mnemonicParsing="false" onAction="#switchToUpgradeToVIP" prefHeight="25.0" prefWidth="178.0" text="Go VIP" />
+            <Hyperlink layoutX="223.0" layoutY="298.0" onAction="#switchToLogIn" prefHeight="23.0" prefWidth="181.0" text="Sign Out" underline="true" />
+            <Text fx:id="welcomeHome" layoutX="213.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="129.724609375">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Button layoutX="211.0" layoutY="123.0" mnemonicParsing="false" onAction="#switchToNormalAddAPost" prefHeight="25.0" prefWidth="178.0" text="Add a Post" />
+            <Button layoutX="211.0" layoutY="163.0" mnemonicParsing="false" onAction="#switchToNormalDisplayMyPosts" prefHeight="25.0" prefWidth="178.0" text="Display My Posts" />
+            <Button layoutX="211.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToNormalEditMyProfile" prefHeight="25.0" prefWidth="178.0" text="Edit My Profile" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

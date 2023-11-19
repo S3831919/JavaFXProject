@@ -39,12 +39,12 @@
    <center>
       <Pane prefHeight="271.0" prefWidth="418.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="223.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name Changed" wrappingWidth="153.724609375">
+            <Text layoutX="223.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name Changed" textAlignment="CENTER" wrappingWidth="153.724609375">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <Button layoutX="204.0" layoutY="251.0" mnemonicParsing="false" onAction="#switchToNormalWelcome" prefHeight="25.0" prefWidth="178.0" text="Return to Main Menu" />
+            <Button layoutX="204.0" layoutY="251.0" mnemonicParsing="false" onAction="#switchToNormalWelcomeHome" prefHeight="25.0" prefWidth="178.0" text="Return to Main Menu" />
          </children>
       </Pane>
    </center>

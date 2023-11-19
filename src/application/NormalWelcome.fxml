@@ -40,16 +40,16 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="213.0" layoutY="249.0" mnemonicParsing="false" onAction="#switchToUpgradeToVIP" prefHeight="25.0" prefWidth="178.0" text="Go VIP" />
+            <Button layoutX="211.0" layoutY="123.0" mnemonicParsing="false" onAction="#switchToNormalAddAPost" prefHeight="25.0" prefWidth="178.0" text="Add a Post" />
             <Hyperlink layoutX="223.0" layoutY="298.0" onAction="#switchToLogIn" prefHeight="23.0" prefWidth="181.0" text="Sign Out" underline="true" />
-            <Text layoutX="213.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome &lt;user&gt;" wrappingWidth="129.724609375">
+            <Text fx:id="welcome1" layoutX="213.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="129.724609375">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <Button layoutX="211.0" layoutY="123.0" mnemonicParsing="false" onAction="#switchToNormalAddAPost" prefHeight="25.0" prefWidth="178.0" text="Add a Post" />
             <Button layoutX="211.0" layoutY="163.0" mnemonicParsing="false" onAction="#switchToNormalDisplayMyPosts" prefHeight="25.0" prefWidth="178.0" text="Display My Posts" />
             <Button layoutX="211.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToNormalEditMyProfile" prefHeight="25.0" prefWidth="178.0" text="Edit My Profile" />
+            <Button layoutX="213.0" layoutY="249.0" mnemonicParsing="false" onAction="#switchToUpgradeToVIP" prefHeight="25.0" prefWidth="178.0" text="Go VIP" />
          </children>
       </Pane>
    </center>

@@ -48,7 +48,7 @@
             <Button layoutX="211.0" layoutY="123.0" mnemonicParsing="false" onAction="#switchToChangePassword" prefHeight="25.0" prefWidth="178.0" text="Change Password" />
             <Button layoutX="211.0" layoutY="163.0" mnemonicParsing="false" onAction="#switchToNormalChangeName" prefHeight="25.0" prefWidth="178.0" text="Change Name" />
             <Button layoutX="211.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToNormalChangeUsername" prefHeight="25.0" prefWidth="178.0" text="Change Username" />
-            <Button layoutX="213.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToNormalWelcome" prefHeight="25.0" prefWidth="178.0" text="Back to Main Menu" />
+            <Button layoutX="213.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToNormalWelcomeHome" prefHeight="25.0" prefWidth="178.0" text="Back to Main Menu" />
          </children>
       </Pane>
    </center>

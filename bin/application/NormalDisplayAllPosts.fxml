@@ -40,7 +40,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="212.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToNormalWelcome" prefHeight="25.0" prefWidth="178.0" text="Return to Main Menu" />
+            <Button layoutX="212.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToNormalWelcomeHome" prefHeight="25.0" prefWidth="178.0" text="Return to Main Menu" />
             <Text layoutX="213.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Posts" wrappingWidth="149.724609375">
                <font>
                   <Font size="15.0" />
@@ -48,7 +48,7 @@
             </Text>
             <Button layoutX="212.0" layoutY="208.0" mnemonicParsing="false" onAction="#switchToNormalDisplayMyPosts" prefHeight="25.0" prefWidth="178.0" text="Back" />
             <TextArea fx:id="textArea" layoutX="212.0" layoutY="107.0" prefHeight="88.0" prefWidth="172.0" />
-            <Button fx:id="test" layoutX="211.0" layoutY="288.0" mnemonicParsing="false" onAction="#printPosts" prefHeight="25.0" prefWidth="178.0" text="Test" />
+            <Button fx:id="test" layoutX="211.0" layoutY="288.0" mnemonicParsing="false" onAction="#printPosts" prefHeight="25.0" prefWidth="178.0" text="Print" />
          </children>
       </Pane>
    </center>

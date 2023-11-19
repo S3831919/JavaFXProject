@@ -47,7 +47,7 @@
                </font>
             </Text>
             <Button layoutX="211.0" layoutY="245.0" mnemonicParsing="false" onAction="#switchToNormalDisplayMyPosts" prefHeight="25.0" prefWidth="178.0" text="Back" />
-            <TextField alignment="CENTER" layoutX="210.0" layoutY="136.0" prefHeight="37.0" prefWidth="181.0" text="Post ID" />
+            <TextField fx:id="PostIDSearch" alignment="CENTER" layoutX="210.0" layoutY="136.0" prefHeight="37.0" prefWidth="181.0" text="Post ID" />
          </children>
       </Pane>
    </center>

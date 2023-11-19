@@ -3,8 +3,6 @@ package Code;
 
 import java.util.Comparator;
 
-import application.Post;
-
 public class PostLikesComparator implements Comparator<Post> {
     @Override
     public int compare(Post post1, Post post2) {

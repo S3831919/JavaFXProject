@@ -40,18 +40,24 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="211.0" layoutY="275.0" mnemonicParsing="false" onAction="#switchToNormalPostSubmitted" prefHeight="25.0" prefWidth="178.0" text="Submit" />
+            <Button layoutX="211.0" layoutY="283.0" mnemonicParsing="false" onAction="#switchToNormalPostSubmitted" prefHeight="25.0" prefWidth="178.0" text="Submit" />
             <Text layoutX="212.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Post" wrappingWidth="75.724609375">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <TextField alignment="CENTER" layoutX="210.0" layoutY="56.0" prefHeight="17.0" prefWidth="181.0" text="Post ID" />
-            <TextField alignment="CENTER" layoutX="210.0" layoutY="89.0" prefHeight="19.0" prefWidth="181.0" text="Content" />
-            <TextField alignment="CENTER" layoutX="210.0" layoutY="120.0" prefHeight="11.0" prefWidth="181.0" text="Author" />
-            <TextField alignment="CENTER" layoutX="210.0" layoutY="153.0" prefHeight="11.0" prefWidth="181.0" text="Likes" />
-            <TextField alignment="CENTER" layoutX="210.0" layoutY="188.0" prefHeight="11.0" prefWidth="181.0" text="Shares" />
-            <TextField alignment="CENTER" layoutX="211.0" layoutY="222.0" prefHeight="11.0" prefWidth="181.0" text="Time of Post" />
+            <TextField fx:id="PostID" alignment="CENTER" layoutX="210.0" layoutY="56.0" prefHeight="17.0" prefWidth="181.0" text="Post ID" />
+            <TextField fx:id="Content" alignment="CENTER" layoutX="210.0" layoutY="89.0" prefHeight="19.0" prefWidth="181.0" text="Content" />
+            <TextField fx:id="Author" alignment="CENTER" layoutX="210.0" layoutY="120.0" prefHeight="11.0" prefWidth="181.0" text="Author" />
+            <TextField fx:id="Likes" alignment="CENTER" layoutX="210.0" layoutY="153.0" prefHeight="11.0" prefWidth="181.0" text="Likes" />
+            <TextField fx:id="Shares" alignment="CENTER" layoutX="210.0" layoutY="188.0" prefHeight="11.0" prefWidth="181.0" text="Shares" />
+            <TextField fx:id="TimeOfPost" alignment="CENTER" layoutX="211.0" layoutY="222.0" prefHeight="11.0" prefWidth="181.0" text="Time of Post" />
+            <Text fx:id="submitStatus" layoutX="191.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="213.724609375">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Button layoutX="211.0" layoutY="317.0" mnemonicParsing="false" onAction="#switchToNormalWelcomeHome" prefHeight="25.0" prefWidth="178.0" text="Cancel" />
          </children>
       </Pane>
    </center>

@@ -48,7 +48,7 @@
             <Button layoutX="211.0" layoutY="123.0" mnemonicParsing="false" onAction="#switchToNormalRetrieveAPost" prefHeight="25.0" prefWidth="178.0" text="Retrieve a Post" />
             <Button layoutX="211.0" layoutY="163.0" mnemonicParsing="false" onAction="#switchToNormalRetrieveReplies" prefHeight="25.0" prefWidth="178.0" text="Retrieve Replies for a Post" />
             <Button layoutX="211.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToNormalRemovePost" prefHeight="25.0" prefWidth="178.0" text="Remove a Post" />
-            <Button layoutX="213.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToNormalWelcome" prefHeight="25.0" prefWidth="178.0" text="Back" />
+            <Button layoutX="213.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToNormalWelcomeHome" prefHeight="25.0" prefWidth="178.0" text="Back" />
          </children>
       </Pane>
    </center>

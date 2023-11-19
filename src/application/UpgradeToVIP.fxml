@@ -41,7 +41,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="211.0" layoutY="275.0" mnemonicParsing="false" onAction="#switchToNormalWelcome" prefHeight="25.0" prefWidth="178.0" text="Cancel" />
+            <Button layoutX="211.0" layoutY="275.0" mnemonicParsing="false" onAction="#switchToNormalWelcomeHome" prefHeight="25.0" prefWidth="178.0" text="Cancel" />
             <Text layoutX="213.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go VIP" wrappingWidth="149.724609375">
                <font>
                   <Font size="15.0" />

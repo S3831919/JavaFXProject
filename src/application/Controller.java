@@ -4,6 +4,11 @@ package application;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,7 +16,11 @@ import java.util.EventObject;
 import java.util.List;
 import java.util.Scanner;
 
+import Code.DatabaseConnection;
 import Code.MediaAnalyser;
+import Code.Post;
+import Code.Reply;
+import Code.User;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,9 +40,9 @@ public class Controller {
 	private Scene scene;
 	private Parent root; 
 	
-	
 	@FXML
 	private TextArea textArea;
+	
 	@FXML
 	private Button test;
 	
@@ -41,10 +50,55 @@ public class Controller {
 	private TextField userName;
 	
 	@FXML
+	private TextField passwordChangeuserName;
+	
+	@FXML
+	private TextField firstName;
+	
+	@FXML
+	private TextField lastName;
+	
+	@FXML
 	private TextField password;
 	
 	@FXML
+	private TextField changePassword;
+	
+	@FXML
+	private TextField changePasswordConfirm;
+	
+	@FXML
 	private Text logInStatus;
+	
+	@FXML
+	private Text submitStatus;
+	
+	@FXML
+	public Text welcome1;
+	
+	@FXML
+	public Text welcomeHome;
+	
+	@FXML
+	private TextField PostID;
+	
+	@FXML
+	private TextField PostIDSearch;
+	
+	@FXML
+	private TextField Content;
+	
+	@FXML
+	private TextField Author;
+	
+	@FXML
+	private TextField Likes;
+	
+	@FXML
+	private TextField Shares;
+	
+	@FXML
+	private TextField TimeOfPost;
 	
 	//CSV Column values 
 	int ID = 0;
@@ -84,31 +138,140 @@ public class Controller {
 	
 	//create a new post 
 	Post post = new Post(0, "", "", 0, 0, "",0);
-	
+
 	//create a new reply 
 	Reply reply = new Reply(0, "", "", 0, 0, "",0);
-	
+
 	//create a user
-	User user = new User("","","","");
+	User user = new User("first","last","pass","user");
 	  
 	public void print(ArrayList postList) {
 		
 		textArea.setText(postList.toString());
 	
 	}
+	
+	public void printPosts() {
+		
+		final String TABLE_NAME = "Post";
 
-	 
+		try (Connection con = DatabaseConnection.getConnection()) {
+		    String query = "SELECT * FROM " + TABLE_NAME;
+		    try (PreparedStatement stmt = con.prepareStatement(query)) {
+		        ResultSet resultSet = stmt.executeQuery();
+
+		        StringBuilder resultText = new StringBuilder();
+
+		        while (resultSet.next()) {
+		            // Retrieve data from the result set
+		            String PostIDSQL = resultSet.getString("PostID");
+		            String ContentSQL = resultSet.getString("Content");
+		            String AuthorSQL = resultSet.getString("Author");
+		            int LikesSQL = resultSet.getInt("Likes");
+		            int SharesSQL = resultSet.getInt("Shares");
+		            String DateTimeSQL = resultSet.getString("DateTime");
+
+		            // Concatenate the data and add a newline
+		            resultText.append("PostID: ").append(PostIDSQL).append(" ")
+		            .append("Content: ").append(ContentSQL).append(" ")
+		            .append("Author: ").append(AuthorSQL).append(" ")
+		            .append("Likes: ").append(LikesSQL).append(" ")
+		            .append("Shares: ").append(SharesSQL).append(" ")
+		            .append("Date: ").append(DateTimeSQL).append("\n");
+		        }
+
+		        // Set the final text to the TextArea
+		        textArea.setText(resultText.toString());
+		    }
+		} catch (SQLException e) {
+		    e.printStackTrace();
+		}
+		
+	}
+	
+	public void addAPost() {
+		
+//		//create new Post and Reply object 
+//		post = new Post(0, "", "", 0, 0, "",0);
+//		reply = new Reply(0, "", "", 0, 0, "",0);
+//		
+//		postList.add(post);
+//		replyList.add(reply);
+//		
+		post.setPostID(Integer.parseInt(PostID.getText()));
+		post.setPostContent(Content.getText());
+		post.setPostAuthor(Author.getText());
+		post.setPostLikes(Integer.parseInt(Likes.getText()));
+		post.setPostShares(Integer.parseInt(Shares.getText()));
+		post.setTimeStamp(TimeOfPost.getText());
+		
+		 final String TABLE_NAME = "Post";
+
+		 try (Connection con = DatabaseConnection.getConnection();
+		      Statement stmt = con.createStatement();) {
+		     String query = "INSERT INTO " + TABLE_NAME +
+		                    " VALUES ('" + post.getPostID() + "', '" + post.getPostContent() +
+		                    "', '" + post.getPostAuthor() + "', '" + post.getPostLikes() + 	
+		     				"', '" + post.getPostShares() + "', '" + post.getTimeStamp() + "')";	
+
+				int result = stmt.executeUpdate(query);
+
+				if (result == 1) {
+					System.out.println("Insert into table " + TABLE_NAME + " executed successfully");
+					System.out.println(result + " row(s) affected");
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}	
+
+	}
+
 	 public void createUser(){
-		 
-		 
+		
+		 	 user.setFirstName(firstName.getText());
+		 	 user.setLastName(lastName.getText());
 			 user.setUserName(userName.getText());
 			 user.setPassword(password.getText());
-			 userList.add(user);
+			 userList.add(user);	
 			 
-			 userName.setText(user.getUserName());
-			 password.setText(user.getPassword());
+			 final String TABLE_NAME = "User";
+
+			 try (Connection con = DatabaseConnection.getConnection();
+			      Statement stmt = con.createStatement();) {
+			     String query = "INSERT INTO " + TABLE_NAME +
+			                    " VALUES ('" + user.getUserName() + "', '" + user.getFirstName() +
+			                    "', '" + user.getLastName() + "', '" + user.getPassword() + "')";					
+
+					int result = stmt.executeUpdate(query);
+
+					if (result == 1) {
+						System.out.println("Insert into table " + TABLE_NAME + " executed successfully");
+						System.out.println(result + " row(s) affected");
+					}
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+				}		 
 			 			
 		 }
+
+	 
+	 public void updateUser(){
+		 
+		 firstName.setText(firstName.getText());
+		 			
+	 }
+	 
+	 public void changeAPassword(){
+		 
+		 passwordChangeuserName.setText(userName.getText());
+		 
+		 String a = changePassword.getText();
+		 String b = changePasswordConfirm.getText(); 
+		 
+		 if(a == b) {
+			 user.setPassword(a);
+		 }
+	 }
 	 
 	 public void switchToLogIn(ActionEvent event) throws IOException {  
 				 
@@ -137,24 +300,44 @@ public class Controller {
 		  scene = new Scene(root);
 		  stage.setScene(scene);
 		  stage.show();
+		  
 		 }
 	 
-	 public void switchToNormalWelcome(ActionEvent event) throws IOException {
-		    boolean flag = false;
-		    
-//		    for(int i = 0; i < userList.size(); i++) {
-//		    	if(userList.get(i).getUserName().equals(userName.getText())) {
-//		    		
-//		    	}
-//		    }
-	
+	 public void switchToNormalWelcome(ActionEvent event) throws IOException {	
+		 
+		        final String TABLE_NAME = "User";
+		        
+			  	boolean flag = false;
+			  	
+			  	//check the user exists in the database and verifies credentials 
 
-		    if (userName.getText().equals("Username") && password.getText().equals("Password")) {
-		        logInStatus.setText("Welcome");
-		        flag = true;
-		    } else {
-		        logInStatus.setText("Incorrect Username/Password. Please try again");
-		    }
+		        try (Connection con = DatabaseConnection.getConnection()) {
+		            // Assuming you have a User class with appropriate fields
+		            String query = "SELECT * FROM " + TABLE_NAME;
+		            try (PreparedStatement stmt = con.prepareStatement(query)) {
+		                ResultSet resultSet = stmt.executeQuery();
+
+		                while (resultSet.next()) {
+		                    // Retrieve data from the result set
+		                    String userNameSQL = resultSet.getString("userName");
+		                    String firstNameSQL = resultSet.getString("firstName");
+		                    String lastNameSQL = resultSet.getString("lastName");
+		                    String passwordSQL = resultSet.getString("password");
+		               
+		        		  	
+		        		    if (userName.getText().equals(userNameSQL) && password.getText().equals(passwordSQL)) {
+		        		        logInStatus.setText("Welcome");
+		        		        flag = true;
+		        		    } else {
+		        		        logInStatus.setText("Incorrect Username/Password. Please try again");
+		        		    }
+
+		                }
+		            }
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }	        
+		        
 
 		    if (flag) {
 		        Parent root = FXMLLoader.load(getClass().getResource("NormalWelcome.fxml"));
@@ -165,6 +348,26 @@ public class Controller {
 		    }
 		}
 	 
+	 public void switchToNormalWelcomeHome(ActionEvent event) throws IOException {
+		 
+		 try {
+		 welcome1.setText(firstName.getText());
+		 welcomeHome.setText(firstName.getText());
+		 }
+		 catch (NullPointerException e){
+			 
+		 }
+		 
+		 
+     Parent root = FXMLLoader.load(getClass().getResource("NormalWelcomeHome.fxml"));
+     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     scene = new Scene(root);
+     stage.setScene(scene);
+     stage.show();
+	 }
+
+
+	 
 	 public void switchToNormalAddAPost(ActionEvent event) throws IOException {
 		  Parent root = FXMLLoader.load(getClass().getResource("NormalAddAPost.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -174,14 +377,38 @@ public class Controller {
 		 }
 	 
 	 public void switchToNormalPostSubmitted(ActionEvent event) throws IOException {
+		 Boolean flag = false; 
+		 
+		 try {
+		 addAPost(); 
+		 flag = true; 
+		 }
+		 catch (NumberFormatException e) {
+			 System.out.print(e);
+		 }
+		 
+		 if(flag) {
 		  Parent root = FXMLLoader.load(getClass().getResource("NormalPostSubmitted.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		  scene = new Scene(root);
 		  stage.setScene(scene);
 		  stage.show();
 		 }
+		 else {
+			 submitStatus.setText("Incorrect number format");
+		 }
+	 }
 	 
 	 public void switchToChangePassword(ActionEvent event) throws IOException {
+		 
+		 try {
+		 changeAPassword();
+		 }
+		 catch (NullPointerException e) {
+			 
+			 System.out.print("Bruh, your username field is empty");
+		 }
+		 
 		  Parent root = FXMLLoader.load(getClass().getResource("ChangePassword.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		  scene = new Scene(root);
@@ -206,6 +433,7 @@ public class Controller {
 		 }
 	 
 	 public void switchToNormalRetrieveAPost(ActionEvent event) throws IOException {
+		 
 		  Parent root = FXMLLoader.load(getClass().getResource("NormalRetrieveAPost.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		  scene = new Scene(root);
@@ -253,14 +481,21 @@ public class Controller {
 		  stage.show();
 		 }
 	 
-	 public void switchToNormalDisplayAllPosts(ActionEvent event) throws IOException {
+	 public void switchToNormalDisplayAllPosts(ActionEvent event) throws IOException {	
+
+			 try {
+				 printPosts();
+			 }
+			 catch (NullPointerException e) {
+				 System.out.print(e);
+			 }	
 		 	
 		  Parent root = FXMLLoader.load(getClass().getResource("NormalDisplayAllPosts.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		  scene = new Scene(root);
 		  stage.setScene(scene); 
 		  stage.show();
-		  
+ 
 		 }
 	 
 	 public void switchToNormalEditMyProfile(ActionEvent event) throws IOException {
@@ -280,7 +515,17 @@ public class Controller {
 		 }
 	 
 	 public void switchToNormalNameChanged(ActionEvent event) throws IOException {
-		  Parent root = FXMLLoader.load(getClass().getResource("NormalNameChanged.fxml"));
+		 
+		 try {
+		 updateUser();
+		 }
+		 catch (NullPointerException e){
+			 
+			 System.out.print(e);
+			 
+		 }
+		 
+		 Parent root = FXMLLoader.load(getClass().getResource("NormalNameChanged.fxml"));
 		  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		  scene = new Scene(root);
 		  stage.setScene(scene);

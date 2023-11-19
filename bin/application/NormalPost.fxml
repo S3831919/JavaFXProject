@@ -40,14 +40,14 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="212.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToNormalWelcome" prefHeight="25.0" prefWidth="178.0" text="Return to Main Menu" />
-            <Text layoutX="213.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Post &lt;Post ID&gt;" wrappingWidth="149.724609375">
+            <Button layoutX="212.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToNormalWelcomeHome" prefHeight="25.0" prefWidth="178.0" text="Return to Main Menu" />
+            <Text layoutX="213.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Post 101" wrappingWidth="149.724609375">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
             <Button layoutX="212.0" layoutY="208.0" mnemonicParsing="false" onAction="#switchToNormalRetrieveAPost" prefHeight="25.0" prefWidth="178.0" text="Back" />
-            <TextArea layoutX="212.0" layoutY="107.0" prefHeight="88.0" prefWidth="172.0" />
+            <TextArea layoutX="212.0" layoutY="107.0" prefHeight="88.0" prefWidth="172.0" text="PostID = 101&#10;Content = &#10;Author = &#10;Like = 201&#10;Shares = 225&#10;Time Of Post = " />
          </children>
       </Pane>
    </center>
